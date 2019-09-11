@@ -1,5 +1,7 @@
 package com.smoothstack.counterAPI.dao;
 
+import java.time.LocalDateTime;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.ResponseEntity;
@@ -13,5 +15,11 @@ public interface CounterFlightDAO extends JpaRepository<Flight, Integer> {
 	
 	@Query(value="SELECT * FROM flight WHERE airport_dep_code = ?1", nativeQuery = true)
 	public ResponseEntity<Flight> getFlightByDepAirport(String code);
+
+	@Query(value="SELECT * FROM flight WHERE flight_dep_time >= ?1", nativeQuery = true)
+	public ResponseEntity<Flight> getFlightAfterDepartTime(LocalDateTime time);
+
+	@Query(value="SELECT * FROM flight WHERE flight_dep_time <= ?1", nativeQuery = true)
+	public ResponseEntity<Flight> getFlightBeforeDepartTime(LocalDateTime time);
 
 }

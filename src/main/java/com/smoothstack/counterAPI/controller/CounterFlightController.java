@@ -1,5 +1,6 @@
 package com.smoothstack.counterAPI.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -12,12 +13,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.smoothstack.counterAPI.entity.Flight;
 import com.smoothstack.counterAPI.service.CounterFlightService;
 
+@RestController
+@RequestMapping("/counter")
 public class CounterFlightController {
 
 	private final String JSON = "application/json";
@@ -45,6 +50,16 @@ public class CounterFlightController {
 	@GetMapping(value = "/flight/airport_dep/{code}", produces = { JSON, XML })
 	public ResponseEntity<Flight> getFlightByDepAirport(@PathVariable String code){
 		return flightService.getFlightByDepAirport(code);
+	}
+	
+	@GetMapping(value = "/flight/time_dep_after/{time}", produces = { JSON, XML })
+	public ResponseEntity<Flight> getFlightAfterDepartTime(@PathVariable LocalDateTime time){
+		return flightService.getFlightAfterDepartTime(time);
+	}
+	
+	@GetMapping(value = "/flight/time_dep_before/{time}", produces = { JSON, XML })
+	public ResponseEntity<Flight> getFlightBeforeDepartTime(@PathVariable LocalDateTime time){
+		return flightService.getFlightBeforeBepartTime(time);
 	}
 	
 	@PostMapping(value ="/flight", produces = { XML, JSON }, consumes = { XML, JSON })

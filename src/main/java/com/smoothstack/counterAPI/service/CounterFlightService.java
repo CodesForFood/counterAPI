@@ -1,5 +1,6 @@
 package com.smoothstack.counterAPI.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,11 +9,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.smoothstack.counterAPI.dao.CounterFlightDAO;
 import com.smoothstack.counterAPI.entity.Flight;
 
+@Service
 public class CounterFlightService {
 	
 	@Autowired
@@ -50,5 +53,13 @@ public class CounterFlightService {
 	@Transactional
 	public ResponseEntity<Flight> getFlightByDepAirport(String code) {
 		return flightDAO.getFlightByDepAirport(code);		
+	}
+
+	public ResponseEntity<Flight> getFlightAfterDepartTime(LocalDateTime time) {
+		return flightDAO.getFlightAfterDepartTime(time);
+	}
+
+	public ResponseEntity<Flight> getFlightBeforeBepartTime(LocalDateTime time) {		
+		return flightDAO.getFlightBeforeDepartTime(time);
 	}	
 }

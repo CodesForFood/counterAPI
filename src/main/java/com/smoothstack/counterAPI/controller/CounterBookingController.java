@@ -42,17 +42,17 @@ public class CounterBookingController {
 		return bookingService.getBookingById(id);								 
 	}
 	
-	@GetMapping(value="/booking/traveler/{id}", produces = { JSON, XML})
+	@GetMapping(value="/booking/traveler/{id}", produces = { JSON, XML })
 	public ResponseEntity<List<Booking>> getBookingsOfTraveler(@PathVariable Integer id){
 		return bookingService.getBookingsOfTraveler(id);
 	}
 	
-	@GetMapping(value="/booking/travelagent/{id}", produces = { JSON, XML})
+	@GetMapping(value="/booking/travelagent/{id}", produces = { JSON, XML })
 	public ResponseEntity<List<Booking>> getBookingsOfTravelAgent(@PathVariable Integer id){
 		return bookingService.getBookingsOfTravelAgent(id);
 	}
 	
-	@GetMapping(value="/booking/flight/{id}", produces = { JSON, XML})
+	@GetMapping(value="/booking/flight/{id}", produces = { JSON, XML })
 	public ResponseEntity<List<Booking>> getBookingsOfFlight(@PathVariable Integer id){
 		return bookingService.getBookingsOfFlight(id);
 	}		

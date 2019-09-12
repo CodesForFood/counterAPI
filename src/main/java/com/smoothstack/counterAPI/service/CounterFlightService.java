@@ -55,10 +55,12 @@ public class CounterFlightService {
 		return flightDAO.getFlightByDepAirport(code);		
 	}
 
+	@Transactional
 	public ResponseEntity<Flight> getFlightAfterDepartTime(LocalDateTime time) {
 		return flightDAO.getFlightAfterDepartTime(time);
 	}
 
+	@Transactional
 	public ResponseEntity<Flight> getFlightBeforeBepartTime(LocalDateTime time) {		
 		return flightDAO.getFlightBeforeDepartTime(time);
 	}	

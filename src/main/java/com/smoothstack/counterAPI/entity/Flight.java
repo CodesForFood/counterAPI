@@ -28,7 +28,7 @@ public class Flight {
 	
 	@ManyToOne
 	@JoinColumn(name = "airport_dep_code")
-	private Airport depertAirport;
+	private Airport departAirport;
 	
 	@ManyToOne
 	@JoinColumn(name = "airport_des_code")
@@ -65,12 +65,12 @@ public class Flight {
 		this.destinationTime = destinationTime;
 	}
 
-	public Airport getDepertAirport() {
-		return depertAirport;
+	public Airport getDepartAirport() {
+		return departAirport;
 	}
 
-	public void setDepertAirport(Airport depertAirport) {
-		this.depertAirport = depertAirport;
+	public void setDepartAirport(Airport depertAirport) {
+		this.departAirport = depertAirport;
 	}
 
 	public Airport getDestinationAirport() {

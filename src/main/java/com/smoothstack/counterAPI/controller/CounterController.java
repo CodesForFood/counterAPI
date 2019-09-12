@@ -26,12 +26,12 @@ public class CounterController {
 	private CounterService counterService;
 	
 	@GetMapping(value ="/listall", produces = { XML, JSON })
-	public List<Counter> getAllTravelers(@RequestParam(required = false, defaultValue = "100") int size) {		
+	public List<Counter> getAllCounters(@RequestParam(required = false, defaultValue = "100") int size) {		
 		return counterService.getAllCounters(size);
 	}
 	
 	@GetMapping(value = "/{id}", consumes = { JSON, XML },produces = { XML, JSON })
-	public ResponseEntity<Counter> getTravelerById(@PathVariable Integer id) {
+	public ResponseEntity<Counter> getCounterById(@PathVariable Integer id) {
 		ResponseEntity<Counter> counter = counterService.getCounterById(id); 
 		CounterSingleton.getInstance().setInstance(counter.getBody());		
 		return counter;

@@ -25,7 +25,6 @@ import com.smoothstack.counterAPI.service.CounterBookingService;
 @RequestMapping("counter")
 public class CounterBookingController {
 
-
 	private final String XML = "application/xml";
 	private final String JSON = "application/json";
 	
@@ -59,7 +58,7 @@ public class CounterBookingController {
 	
 	@PostMapping(value ="/booking", produces = { XML, JSON }, consumes = { XML, JSON })
 	@ResponseStatus(HttpStatus.CREATED)
-	public Booking createBooking(@Valid @RequestBody Booking booking) {
+	public ResponseEntity<Booking> createBooking(@Valid @RequestBody Booking booking) {
 		return bookingService.createBooking(booking);
 	}	
 
@@ -69,7 +68,7 @@ public class CounterBookingController {
 		return bookingService.updateBooking(booking);
 	}
 	
-	@DeleteMapping(value= "/booking", consumes = { JSON, XML }, produces = { JSON, XML})
+	@DeleteMapping(value = "/booking", consumes = { JSON, XML }, produces = { JSON, XML})
 	public boolean cancleBooking(@Valid @RequestBody Booking booking) {
 		return bookingService.cancleBooking(booking);			
 	}

@@ -25,7 +25,13 @@ public class Traveler {
 	
 	@Column(name = "traveler_cc")
 	private String creditCard;
+	
+	@Column(name = "traveler_funds")
+	private double funds;
 
+	public double getFunds() { return funds; }
+	public void setFunds(double funds) { this.funds = funds; }
+	
 	public int getId() { return id; }
 	public void setId(int id) { this.id = id; }
 

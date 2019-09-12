@@ -25,4 +25,10 @@ public interface CounterBookingDAO extends JpaRepository<Booking, Integer> {
 	@Query(value = "UPDATE utopiaairlines.flight SET number_of_tickets = number_of_tickets + 1 WHERE flight_id = ?1", nativeQuery = true)
 	public boolean incrementFlightTickets(Integer id); 
 	
+	@Query(value = "UPDATE utopiaairlines.traveler SET traveler_funds = traveler_funds + (SELECT ticket_price FROM utopiaairlines.flight WHERE flight_id = ?2) WHERE traveler_id = ?1", nativeQuery = true)
+	public boolean refundTravelerFunds(Integer travelerId, Integer flightId);
+	
+	@Query(value = "UPDATE utopiaairlines.traveler SET traveler_funds = traveler_funds - (SELECT ticket_price FROM utopiaairlines.flight WHERE flight_id = ?2) WHERE traveler_id = ?1", nativeQuery = true)
+	public boolean chargeTraveler(Integer travelerId, Integer flightId);
+	
 }

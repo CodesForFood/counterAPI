@@ -59,10 +59,19 @@ public class CounterBookingService {
 	}	
 	
 	@Transactional
-	public Booking createBooking(Booking booking) {
-		Booking savedBooking = bookingDAO.save(booking);
-		bookingDAO.decrementFlightTickets(savedBooking.getFlight().getId());			
-		return savedBooking;
+	public ResponseEntity<Booking> createBooking(Booking booking) {
+		final double price = booking.getFlight().getTicketPrice();
+		final double funds = booking.getTraveler().getFunds();
+		
+		if(funds >= price) {
+			Booking savedBooking = bookingDAO.save(booking);
+			bookingDAO.decrementFlightTickets(savedBooking.getFlight().getId());
+			bookingDAO.chargeTraveler(booking.getTraveler().getId(), booking.getFlight().getId());
+			return new ResponseEntity<Booking>(savedBooking, HttpStatus.CREATED);
+		}
+		else{
+			return new ResponseEntity<Booking>(HttpStatus.PAYMENT_REQUIRED);
+		}							
 	}	
 
 	@Transactional
@@ -75,6 +84,7 @@ public class CounterBookingService {
 		try {
 			bookingDAO.deleteById(booking.getId());	
 			bookingDAO.incrementFlightTickets(booking.getFlight().getId());
+			bookingDAO.refundTravelerFunds(booking.getTraveler().getId(), booking.getFlight().getId());
 			return true;
 		}
 		catch(Exception ex){	

@@ -73,5 +73,4 @@ public class CounterBookingController {
 		return bookingService.cancleBooking(booking);			
 	}
 	
-	
 }

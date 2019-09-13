@@ -28,7 +28,7 @@ public class Booking {
 	
 	@ManyToOne
 	@JoinColumn(name = "travel_agent_id")
-	private TravelAgent travleAgent;
+	private TravelAgent travelAgent;
 
 	public int getId() { return id; }
 	public void setId(int id) { this.id = id; }
@@ -39,7 +39,7 @@ public class Booking {
 	public Flight getFlight() {	return flight; }
 	public void setFlight(Flight flight) { this.flight = flight; }
 
-	public TravelAgent getTravleAgent() { return travleAgent; }
-	public void setTravleAgent(TravelAgent travleAgent) { this.travleAgent = travleAgent; }
+	public TravelAgent getTravleAgent() { return travelAgent; }
+	public void setTravleAgent(TravelAgent travleAgent) { this.travelAgent = travleAgent; }
 	
 }

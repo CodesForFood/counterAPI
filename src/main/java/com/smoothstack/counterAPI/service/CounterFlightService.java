@@ -46,22 +46,22 @@ public class CounterFlightService {
 	}
 
 	@Transactional
-	public ResponseEntity<Flight> getFlightByDesAirport(String code) {
+	public ResponseEntity<List<Flight>> getFlightByDesAirport(String code) {
 		return flightDAO.getFlightByDesAirport(code);		
 	}	
 	
 	@Transactional
-	public ResponseEntity<Flight> getFlightByDepAirport(String code) {
+	public List<Flight> getFlightByDepAirport(String code) {
 		return flightDAO.getFlightByDepAirport(code);		
 	}
 
 	@Transactional
-	public ResponseEntity<Flight> getFlightAfterDepartTime(LocalDateTime time) {
+	public ResponseEntity<List<Flight>> getFlightAfterDepartTime(LocalDateTime time) {
 		return flightDAO.getFlightAfterDepartTime(time);
 	}
 
 	@Transactional
-	public ResponseEntity<Flight> getFlightBeforeBepartTime(LocalDateTime time) {		
+	public ResponseEntity<List<Flight>> getFlightBeforeBepartTime(LocalDateTime time) {		
 		return flightDAO.getFlightBeforeDepartTime(time);
 	}	
 }

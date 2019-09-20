@@ -27,10 +27,10 @@ public class Traveler {
 	private String creditCard;
 	
 	@Column(name = "traveler_funds")
-	private double funds;
+	private Double funds;
 
-	public double getFunds() { return funds; }
-	public void setFunds(double funds) { this.funds = funds; }
+	public Double getFunds() { return funds; }
+	public void setFunds(Double funds) { this.funds = funds; }
 	
 	public int getId() { return id; }
 	public void setId(int id) { this.id = id; }

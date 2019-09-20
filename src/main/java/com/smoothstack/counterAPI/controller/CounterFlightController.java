@@ -43,22 +43,22 @@ public class CounterFlightController {
 	}
 	
 	@GetMapping(value = "/flight/airport_des/{code}", produces = { JSON, XML })
-	public ResponseEntity<Flight> getFlightByDesAirport(@PathVariable String code){
+	public ResponseEntity<List<Flight>> getFlightByDesAirport(@PathVariable String code){
 		return flightService.getFlightByDesAirport(code);
 	}
 	
 	@GetMapping(value = "/flight/airport_dep/{code}", produces = { JSON, XML })
-	public ResponseEntity<Flight> getFlightByDepAirport(@PathVariable String code){
+	public List<Flight> getFlightByDepAirport(@PathVariable String code){
 		return flightService.getFlightByDepAirport(code);
 	}
 	
 	@GetMapping(value = "/flight/time_dep_after/{time}", produces = { JSON, XML })
-	public ResponseEntity<Flight> getFlightAfterDepartTime(@PathVariable LocalDateTime time){
+	public ResponseEntity<List<Flight>> getFlightAfterDepartTime(@PathVariable LocalDateTime time){
 		return flightService.getFlightAfterDepartTime(time);
 	}
 	
 	@GetMapping(value = "/flight/time_dep_before/{time}", produces = { JSON, XML })
-	public ResponseEntity<Flight> getFlightBeforeDepartTime(@PathVariable LocalDateTime time){
+	public ResponseEntity<List<Flight>> getFlightBeforeDepartTime(@PathVariable LocalDateTime time){
 		return flightService.getFlightBeforeBepartTime(time);
 	}
 	

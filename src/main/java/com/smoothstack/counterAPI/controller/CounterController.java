@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.smoothstack.counterAPI.CounterSingleton;
 import com.smoothstack.counterAPI.entity.Counter;
 import com.smoothstack.counterAPI.service.CounterService;
 
@@ -25,19 +24,18 @@ public class CounterController {
 	@Autowired
 	private CounterService counterService;
 	
-	@GetMapping(value ="/listall", produces = { XML, JSON })
+	@GetMapping(value ="/listall", produces = { JSON, XML })
 	public List<Counter> getAllCounters(@RequestParam(required = false, defaultValue = "100") int size) {		
 		return counterService.getAllCounters(size);
 	}
 	
-	@GetMapping(value = "/{id}", consumes = { JSON, XML },produces = { XML, JSON })
+	@GetMapping(value = "/{id}", produces = { JSON, XML })
 	public ResponseEntity<Counter> getCounterById(@PathVariable Integer id) {
-		ResponseEntity<Counter> counter = counterService.getCounterById(id); 
-		CounterSingleton.getInstance().setInstance(counter.getBody());		
+		ResponseEntity<Counter> counter = counterService.getCounterById(id); 		
 		return counter;
 	}
 	
-	@GetMapping(value="/airport/{code}", consumes = { JSON, XML }, produces = { JSON, XML})
+	@GetMapping(value="/airport/{code}",produces = { JSON, XML})
 	public ResponseEntity<Counter> getCounterByAirportCode(@PathVariable String code){
 		return counterService.getCounterByAirport(code);
 	}

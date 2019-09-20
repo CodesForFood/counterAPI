@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name="flight")
 public class Flight {
@@ -21,9 +23,11 @@ public class Flight {
 	private int id;
 	
 	@Column(name = "flight_dep_time")
+	@JsonFormat(pattern = "dd.MM.yyyy HH:mm")
 	private LocalDateTime departTime;
 	
 	@Column(name = "flight_des_time")
+	@JsonFormat(pattern = "dd.MM.yyyy HH:mm")
 	private LocalDateTime destinationTime;
 	
 	@ManyToOne
@@ -35,10 +39,10 @@ public class Flight {
 	private Airport destinationAirport;
 	
 	@Column(name = "ticket_price")
-	private double ticketPrice;
+	private Double ticketPrice;
 	
 	@Column(name = "number_of_tickets")
-	private int numOfTickets;
+	private Integer numOfTickets;
 	
 
 	public int getId() {
@@ -81,19 +85,19 @@ public class Flight {
 		this.destinationAirport = destinationAirport;
 	}
 
-	public double getTicketPrice() {
+	public Double getTicketPrice() {
 		return ticketPrice;
 	}
 
-	public void setTicketPrice(double ticketPrice) {
+	public void setTicketPrice(Double ticketPrice) {
 		this.ticketPrice = ticketPrice;
 	}
 
-	public int getNumOfTickets() {
+	public Integer getNumOfTickets() {
 		return numOfTickets;
 	}
 
-	public void setNumOfTickets(int numOfTickets) {
+	public void setNumOfTickets(Integer numOfTickets) {
 		this.numOfTickets = numOfTickets;
 	}
 	

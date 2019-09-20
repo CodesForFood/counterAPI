@@ -3,6 +3,8 @@ package com.smoothstack.counterAPI.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -51,6 +53,15 @@ public class CounterBookingService {
 		
 		return booking.isPresent() ? new ResponseEntity<List<Booking>>(booking.get(),HttpStatus.OK)
 				: new ResponseEntity<List<Booking>>(HttpStatus.NOT_FOUND);
+	}
+
+	@Transactional
+	public Booking createBooking(Booking booking) {		
+		return bookingDAO.save(booking);
+	}
+
+	public Booking updateBooking(@Valid Booking booking) {
+		return bookingDAO.save(booking);
 	}
 	
 	
